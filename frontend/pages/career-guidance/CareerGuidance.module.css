@@ -80,6 +80,7 @@
 .featureCard {
     background: hsl(var(--card));
     border-radius: 12px;
+    border: 1px black solid;
     padding: 24px;
     box-shadow: 0 4px 12px hsl(var(--muted) / 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -118,6 +119,7 @@
 .chatCard {
     background: hsl(var(--card));
     border-radius: 16px;
+    border: 1px black solid ;
     box-shadow: 0 6px 18px hsl(var(--muted) / 0.15);
     overflow: hidden;
     margin-bottom: 30px;
@@ -171,7 +173,7 @@
 
 .askButton {
     padding: 12px 24px;
-    background: hsl(var(--primary));
+    background: rgb(109, 109, 109);
     color: hsl(var(--primary-foreground));
     font-weight: 600;
     border: none;
@@ -181,7 +183,7 @@
 }
 
 .askButton:hover {
-    background: hsl(var(--primary) / 0.9);
+    background: black;
 }
 
 .askButton:disabled {
@@ -204,13 +206,22 @@
     transition: background 0.3s ease;
 }
 
-.micButton:hover {
-    background: hsl(var(--muted) / 0.5);
-}
-
 .micButtonListening {
-    background: hsl(var(--primary));
+    background: black;
     color: hsl(var(--primary-foreground));
+    position: relative;
+    animation: simplePulse 2s infinite ease-in-out;
+}
+@keyframes simplePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 25px rgba(255, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
 }
 
 /* Response container */

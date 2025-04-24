@@ -128,27 +128,26 @@ const CareerChatbot = () => {
 
     return (
         <>
-            {/* Single Chat toggle button */}
+            {/* Chat toggle button */}
             <button
-                className="chatbot-toggle"
                 onClick={toggleChat}
                 style={{
                     position: 'fixed',
                     bottom: '20px',
                     right: '20px',
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    backgroundColor: '#2563eb',
-                    color: 'white',
+                    width: '50px',
+                    height: '50px',
+                    backgroundColor: '#1F2937', // Dark gray background
+                    color: '#FFFFFF', // White text/icon
                     border: 'none',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
                     zIndex: 999,
-                    transition: 'transform 0.3s ease, background-color 0.3s ease'
+                    transition: 'transform 0.3s ease, background-color 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
                 }}
             >
                 {isOpen ? <XCircle size={24} /> : <MessageSquare size={24} />}
@@ -164,24 +163,23 @@ const CareerChatbot = () => {
                         right: '20px',
                         width: '350px',
                         height: '500px',
-                        backgroundColor: 'var(--background-color, white)',
+                        backgroundColor: 'hsl(var(--background))',
                         borderRadius: '12px',
-                        boxShadow: '0 6px 24px rgba(0,0,0,0.15)',
+                        boxShadow: '0 6px 24px hsl(var(--muted) / 0.15)',
                         display: 'flex',
                         flexDirection: 'column',
                         overflow: 'hidden',
                         zIndex: 998,
-                        border: '1px solid var(--border-color, #e0e0e0)'
+                        border: '1px solid hsl(var(--border))'
                     }}
                 >
                     {/* Chat header */}
                     <div
-                        className="chatbot-header"
                         style={{
                             padding: '16px',
-                            borderBottom: '1px solid var(--border-color, #e0e0e0)',
-                            backgroundColor: '#2563eb',
-                            color: 'white',
+                            borderBottom: '1px solid hsl(var(--border))',
+                            backgroundColor: '#1F2937', // Dark gray background
+                            color: '#FFFFFF', // White text
                             fontWeight: 600,
                             display: 'flex',
                             alignItems: 'center',
@@ -198,7 +196,7 @@ const CareerChatbot = () => {
                                 style={{
                                     background: 'none',
                                     border: 'none',
-                                    color: 'white',
+                                    color: '#FFFFFF', // White text
                                     cursor: 'pointer',
                                     opacity: 0.8,
                                     padding: '4px',
@@ -207,7 +205,6 @@ const CareerChatbot = () => {
                                     alignItems: 'center',
                                     gap: '4px'
                                 }}
-                                title="Clear chat history"
                             >
                                 Clear Chat
                             </button>
@@ -228,7 +225,8 @@ const CareerChatbot = () => {
                             padding: '16px',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '12px'
+                            gap: '12px',
+                            backgroundColor: 'hsl(var(--background))'
                         }}
                     >
                         {messages.map((msg, index) => (
@@ -240,34 +238,95 @@ const CareerChatbot = () => {
                                     padding: '12px 16px',
                                     borderRadius: '12px',
                                     alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                                    backgroundColor: msg.role === 'user' ? '#2563eb' : 'var(--message-bg, #f0f0f0)',
-                                    color: msg.role === 'user' ? 'white' : 'var(--text-color, #333)',
-                                    boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
-                                    fontSize: '14px',
-                                    lineHeight: '1.5'
+                                    backgroundColor: msg.role === 'user'
+                                        ? 'hsl(var(--primary))'
+                                        : 'hsl(var(--muted))',
+                                    color: msg.role === 'user'
+                                        ? 'hsl(var(--primary-foreground))'
+                                        : 'hsl(var(--foreground))',
+                                    display: 'flex',
+                                    gap: '8px',
+                                    alignItems: 'flex-start',
+                                    fontWeight: msg.role === 'bot' ? 500 : 400,
+                                    lineHeight: 1.6
                                 }}
                             >
-                                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                                {msg.role === 'bot' && <Bot size={16} style={{ marginTop: '4px' }} />}
+                                <div style={{
+                                    whiteSpace: 'pre-wrap',
+                                    wordBreak: 'break-word'
+                                }}>
+                                    <ReactMarkdown
+                                        components={{
+                                            p: ({ children }) => (
+                                                <p style={{ margin: '0.5em 0' }}>{children}</p>
+                                            ),
+                                            a: ({ children, href }) => (
+                                                <a
+                                                    href={href}
+                                                    style={{
+                                                        color: msg.role === 'user'
+                                                            ? 'hsl(var(--primary-foreground))'
+                                                            : 'hsl(var(--primary))',
+                                                        textDecoration: 'underline'
+                                                    }}
+                                                >
+                                                    {children}
+                                                </a>
+                                            ),
+                                            ul: ({ children }) => (
+                                                <ul style={{
+                                                    marginLeft: '1.5em',
+                                                    marginTop: '0.5em',
+                                                    marginBottom: '0.5em'
+                                                }}>
+                                                    {children}
+                                                </ul>
+                                            ),
+                                            ol: ({ children }) => (
+                                                <ol style={{
+                                                    marginLeft: '1.5em',
+                                                    marginTop: '0.5em',
+                                                    marginBottom: '0.5em'
+                                                }}>
+                                                    {children}
+                                                </ol>
+                                            ),
+                                            li: ({ children }) => (
+                                                <li style={{ marginBottom: '0.25em' }}>{children}</li>
+                                            ),
+                                            code: ({ children }) => (
+                                                <code style={{
+                                                    backgroundColor: msg.role === 'user'
+                                                        ? 'hsl(var(--primary-foreground) / 0.2)'
+                                                        : 'hsl(var(--muted-foreground) / 0.2)',
+                                                    padding: '0.2em 0.4em',
+                                                    borderRadius: '4px',
+                                                    fontSize: '0.9em'
+                                                }}>
+                                                    {children}
+                                                </code>
+                                            )
+                                        }}
+                                    >
+                                        {msg.content}
+                                    </ReactMarkdown>
+                                </div>
+                                {msg.role === 'user' && <User size={16} style={{ marginTop: '4px' }} />}
                             </div>
                         ))}
 
                         {isLoading && (
-                            <div
-                                className="loading-indicator"
-                                style={{
-                                    alignSelf: 'flex-start',
-                                    padding: '12px 16px',
-                                    borderRadius: '12px',
-                                    backgroundColor: 'var(--message-bg, #f0f0f0)',
-                                    color: 'var(--text-color, #333)',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <div className="typing-dots">
-                                    <span className="dot" style={{ animationDelay: '0s' }}>•</span>
-                                    <span className="dot" style={{ animationDelay: '0.2s' }}>•</span>
-                                    <span className="dot" style={{ animationDelay: '0.4s' }}>•</span>
-                                </div>
+                            <div className="typing-dots" style={{
+                                alignSelf: 'flex-start',
+                                backgroundColor: 'hsl(var(--muted))',
+                                padding: '12px 16px',
+                                borderRadius: '12px',
+                                color: 'hsl(var(--foreground))'
+                            }}>
+                                <span className="dot" style={{ animationDelay: '0s' }}>•</span>
+                                <span className="dot" style={{ animationDelay: '0.2s' }}>•</span>
+                                <span className="dot" style={{ animationDelay: '0.4s' }}>•</span>
                             </div>
                         )}
 
@@ -279,8 +338,8 @@ const CareerChatbot = () => {
                         onSubmit={handleSubmit}
                         style={{
                             padding: '12px',
-                            borderTop: '1px solid var(--border-color, #e0e0e0)',
-                            backgroundColor: 'var(--background-color-light, #fafafa)',
+                            borderTop: '1px solid hsl(var(--border))',
+                            backgroundColor: 'hsl(var(--background))',
                             display: 'flex',
                             gap: '8px'
                         }}
@@ -295,12 +354,12 @@ const CareerChatbot = () => {
                                 flex: 1,
                                 padding: '12px 16px',
                                 borderRadius: '20px',
-                                border: '1px solid var(--border-color, #e0e0e0)',
+                                border: '1px solid hsl(var(--border))',
                                 outline: 'none',
                                 fontSize: '14px',
                                 resize: 'none',
-                                backgroundColor: 'var(--background-color, white)',
-                                color: 'var(--text-color, #333)',
+                                backgroundColor: 'hsl(var(--background))',
+                                color: 'hsl(var(--foreground))',
                                 lineHeight: '1.5',
                                 maxHeight: '100px',
                                 minHeight: '44px'
@@ -311,8 +370,8 @@ const CareerChatbot = () => {
                             type="submit"
                             disabled={!input.trim() || isLoading}
                             style={{
-                                backgroundColor: '#2563eb',
-                                color: 'white',
+                                backgroundColor: 'hsl(var(--primary))',
+                                color: 'hsl(var(--primary-foreground))',
                                 borderRadius: '50%',
                                 width: '44px',
                                 height: '44px',
@@ -349,7 +408,7 @@ const CareerChatbot = () => {
                     100% { opacity: 0.2; }
                 }
                 .chatbot-messages a {
-                    color: #2563eb;
+                    color: hsl(var(--primary));
                     text-decoration: underline;
                 }
                 .chatbot-messages ul, .chatbot-messages ol {

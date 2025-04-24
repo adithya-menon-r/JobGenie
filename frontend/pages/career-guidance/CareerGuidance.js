@@ -116,8 +116,11 @@ const CareerGuidance = () => {
 
     return (
         <div className={styles.container}>
+            {/* AI Chatbot that will be available across all tabs */}
+            <CareerChatbot />
+
             <div className={styles.header}>
-                <h1 className={styles.title}>JobGenie - Career Guidance</h1>
+                <h1 className={styles.title}>Career Guidance</h1>
                 <p className={styles.subtitle}>Get personalized career advice, skill development recommendations, and industry insights.</p>
             </div>
 
@@ -209,7 +212,7 @@ const CareerGuidance = () => {
                                         onClick={handleVoiceInput}
                                         title="Speak your query"
                                     >
-                                        <Mic size={18} />
+                                        <Mic size={22} />
                                     </button>
                                 </div>
                             </div>
@@ -228,10 +231,7 @@ const CareerGuidance = () => {
                             )}
                         </div>
 
-                        <div className={styles.trustIndicator}>
-                            <div className={styles.userIcon}>👥</div>
-                            <p>Trusted by 500K+ job seekers worldwide</p>
-                        </div>
+
                     </>
                 )}
 

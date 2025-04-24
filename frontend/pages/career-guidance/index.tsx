@@ -6,5 +6,5 @@ export default function CareerGuidancePage() {
     <DashboardLayout>
       <CareerGuidance />
     </DashboardLayout>
-);
+  );
 }

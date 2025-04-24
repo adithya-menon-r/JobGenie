@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 import {
   UserCircle,
   BellRing,
@@ -59,23 +60,30 @@ const settingsOptions = [
 export default function SettingsPage() {
   return (
     <DashboardLayout>
-      <div className="max-h-0 px-6 py-10 text-white font-sans">
-        <div className="max-w-5xl mx-auto">
-          <header className="mb-10">
-            <h1 className="text-3xl font-bold text-center mb-2">Account Settings</h1>
-            <p className="text-center text-slate-300 max-w-2xl mx-auto">
+      <div className="min-h-screen p-6 lg:p-8 bg-gradient-to-b from-background to-background/80">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <h1 className="text-4xl font-bold tracking-tight text-foreground">
+              Account Settings
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl">
               Customize your experience and manage your account preferences to optimize your job search journey.
             </p>
-          </header>
+          </motion.div>
 
-          <div className="bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
+          <Card className="overflow-hidden border bg-card shadow-lg">
             <Table>
               <TableHeader>
-                <TableRow className="border-b border-slate-700 hover:bg-transparent">
-                  <TableHead className="font-medium text-slate-300 w-16"></TableHead>
-                  <TableHead className="font-medium text-slate-300 w-1/4">Setting</TableHead>
-                  <TableHead className="font-medium text-slate-300">Description</TableHead>
-                  <TableHead className="font-medium text-slate-300 w-1/6"></TableHead>
+                <TableRow className="hover:bg-transparent border-b">
+                  <TableHead className="w-16"></TableHead>
+                  <TableHead className="w-1/4 text-base font-semibold">Setting</TableHead>
+                  <TableHead className="text-base font-semibold">Description</TableHead>
+                  <TableHead className="w-1/6"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -84,28 +92,29 @@ export default function SettingsPage() {
                     key={option.title}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors"
+                    transition={{ delay: index * 0.1 }}
+                    className="group border-b hover:bg-accent/50 transition-colors duration-200"
                   >
-                    <TableCell className="py-4">
-                      <div className="bg-slate-700 p-2 rounded-md inline-flex">
-                        <option.icon className="h-5 w-5 text-blue-400" />
+                    <TableCell className="py-6">
+                      <div className="bg-primary/10 p-3 rounded-xl inline-flex group-hover:bg-primary/20 transition-colors duration-200">
+                        <option.icon className="h-6 w-6 text-primary" />
                       </div>
                     </TableCell>
-                    <TableCell className="font-medium text-slate-200 py-4">
-                      {option.title}
+                    <TableCell className="py-6">
+                      <p className="font-semibold text-foreground">{option.title}</p>
                     </TableCell>
-                    <TableCell className="text-slate-300 py-4">
-                      {option.description}
+                    <TableCell className="py-6">
+                      <p className="text-muted-foreground leading-relaxed">{option.description}</p>
                     </TableCell>
-                    <TableCell className="text-right py-4">
+                    <TableCell className="text-right py-6">
                       <Link href={option.link}>
                         <Button
+                          variant="secondary"
                           size="sm"
-                          className="bg-slate-700 hover:bg-blue-600 text-slate-200 transition-all rounded flex items-center gap-1 border border-slate-600 hover:border-blue-500"
+                          className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-200"
                         >
-                          <span>Configure</span>
-                          <ChevronRight className="h-3 w-3" />
+                          Configure
+                          <ChevronRight className="h-4 w-4 ml-1" />
                         </Button>
                       </Link>
                     </TableCell>
@@ -113,10 +122,15 @@ export default function SettingsPage() {
                 ))}
               </TableBody>
             </Table>
-          </div>
+          </Card>
 
-          <footer className="mt-8 text-center text-sm text-slate-400">
-            <p>Changes to settings are automatically saved to your account</p>
+          <footer className="text-center space-y-2 py-4">
+            <p className="text-sm text-muted-foreground">
+              Changes to settings are automatically saved to your account
+            </p>
+            <p className="text-xs text-muted-foreground/60">
+              Last updated: {new Date().toLocaleDateString()}
+            </p>
           </footer>
         </div>
       </div>

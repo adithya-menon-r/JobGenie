@@ -22,7 +22,7 @@ const navLinks = [
   { href: "/jobs", label: "Find Jobs" },
   { href: "/resume-tools", label: "Resume Tools" },
   { href: "/interviews", label: "Interview Prep" },
-  { href: "/career-guidance", label: "Career Guidance" },
+  { href: "/career-guidance", label: "Career Guidance" },  
 ];
 
 export default function Home() {

@@ -3,7 +3,6 @@
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
@@ -69,71 +68,77 @@ const AddNewInterview = () => {
     return (
         <div>
             <div
-                className="p-6 border border-blue-300 bg-blue-100 hover:bg-blue-200 rounded-lg shadow text-blue-900 cursor-pointer transition-all"
+                className="p-6 border bg-black hover:bg-black/75 rounded-lg shadow-md text-white cursor-pointer transition-all"
                 onClick={() => setOpenDialog(true)}
             >
                 <h2 className="font-semibold text-lg text-center">+ Add New Interview</h2>
             </div>
 
             <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-                <DialogContent className="max-w-2xl bg-white border border-gray-300 text-gray-900 shadow-lg">
+                <DialogContent className="max-w-md bg-white border border-gray-200 rounded-lg p-6">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold mb-2">
-                            🎯 Describe Your Interview Role
+                        <DialogTitle className="text-xl font-bold text-gray-800 mb-4">
+                            Describe Your Interview Role
                         </DialogTitle>
-                        <DialogDescription className="text-gray-600">
-                            <form onSubmit={onSubmit} className="space-y-5 mt-4">
-                                <div>
-                                    <label className="block mb-1 font-medium">Job Role/Position</label>
-                                    <Input
-                                        className="bg-gray-50 text-gray-900 border border-gray-300"
-                                        placeholder="e.g. Full Stack Developer"
-                                        required
-                                        onChange={(e) => setJobPosition(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block mb-1 font-medium">Job Description / Tech Stack</label>
-                                    <Textarea
-                                        className="bg-gray-50 text-gray-900 border border-gray-300"
-                                        placeholder="e.g. React, NodeJS, etc."
-                                        required
-                                        onChange={(e) => setJobDescription(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block mb-1 font-medium">Years of Experience</label>
-                                    <Input
-                                        className="bg-gray-50 text-gray-900 border border-gray-300"
-                                        placeholder="e.g. 3"
-                                        type="number"
-                                        required
-                                        onChange={(e) => setJobExperience(e.target.value)}
-                                    />
-                                </div>
+                        <form onSubmit={onSubmit} className="space-y-4">
+                            <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700">Job Role/Position</label>
+                                <Input
+                                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="e.g. Full Stack Developer"
+                                    required
+                                    value={jobPosition}
+                                    onChange={(e) => setJobPosition(e.target.value)}
+                                />
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700">Job Description / Tech Stack</label>
+                                <Textarea
+                                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="e.g. React, NodeJS, etc."
+                                    required
+                                    value={jobDescription}
+                                    onChange={(e) => setJobDescription(e.target.value)}
+                                />
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700">Years of Experience</label>
+                                <Input
+                                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="e.g. 3"
+                                    type="number"
+                                    required
+                                    value={jobExperience}
+                                    onChange={(e) => setJobExperience(e.target.value)}
+                                />
+                            </div>
 
-                                <div className="flex justify-end gap-4 mt-6">
-                                    <Button
-                                        variant="outline"
-                                        type="button"
-                                        onClick={() => setOpenDialog(false)}
-                                        className="border-gray-400"
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white">
-                                        {loading ? (
-                                            <>
-                                                <Loader2Icon className="animate-spin h-4 w-4 mr-2" />
-                                                Generating...
-                                            </>
-                                        ) : (
-                                            "Start Interview"
-                                        )}
-                                    </Button>
-                                </div>
-                            </form>
-                        </DialogDescription>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <Button
+                                    variant="outline"
+                                    type="button"
+                                    onClick={() => setOpenDialog(false)}
+                                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    type="submit"
+                                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                                >
+                                    {loading ? (
+                                        <>
+                                            <Loader2Icon className="animate-spin h-4 w-4 mr-2" />
+                                            Generating...
+                                        </>
+                                    ) : (
+                                        "Start Interview"
+                                    )}
+                                </Button>
+                            </div>
+                        </form>
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
