@@ -56,11 +56,6 @@ export default function Home() {
                       Get Started <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/jobs">
-                    <Button size="lg" variant="outline">
-                      Browse Jobs
-                    </Button>
-                  </Link>
                 </div>
               </div>
               <div className="flex items-center justify-center">
