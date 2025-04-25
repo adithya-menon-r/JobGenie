@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useState, useRef } from "react";
 import { Globe } from "lucide-react";
+import { createPortal } from "react-dom";
 
-// Add type definitions for Google Translate API
 declare global {
     interface Window {
         google: {
@@ -21,6 +21,7 @@ declare global {
 
 const GoogleTranslate = () => {
     const [showDropdown, setShowDropdown] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -40,6 +41,8 @@ const GoogleTranslate = () => {
     ] as const;
 
     useEffect(() => {
+        setMounted(true);
+
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setShowDropdown(false);
@@ -134,8 +137,7 @@ const GoogleTranslate = () => {
             >
                 <Globe className="h-4 w-4 items-center ml-2" />
             </button>
-
-            {showDropdown && (
+            {mounted && showDropdown && createPortal(
                 <div
                     className="rounded-md border bg-white dark:bg-gray-800 shadow-lg"
                     style={{
@@ -154,7 +156,8 @@ const GoogleTranslate = () => {
                             </button>
                         ))}
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );
