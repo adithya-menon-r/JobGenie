@@ -380,14 +380,13 @@ export default function Resume() {
                           </div>
                           <div className="h-2 rounded-full bg-muted overflow-hidden">
                             <div
-                              className="h-full bg-primary transition-all duration-1000 ease-in-out"
+                              className="h-full bg-black dark:bg-primary transition-all duration-1000 ease-in-out"
                               style={{ width: `${skillsMatchPercentage}%` }}
                             />
                           </div>
                           <div className="mt-8 text-right">
-                            <Button
-                              variant="secondary"
-                              className="bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/80"
+                            <Button 
+                              className="bg-black text-white hover:bg-black/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
                               onClick={() => router.push('/career-guidance')}
                             >
                               Get Career Guidance
