@@ -16,10 +16,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import GoogleTranslate from "@/components/google-translate";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/jobs", label: "Find Jobs" },
-  { href: "/resume", label: "Resume Tools" },
+  { href: "/resume-tools", label: "Resume Tools" },
   { href: "/interviews", label: "Interview Prep" },
   { href: "/career-guidance", label: "Career Guidance" },
 ];
@@ -27,6 +28,11 @@ const navLinks = [
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const { isSignedIn } = useUser();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-white dark:bg-gray-900">
@@ -60,9 +66,9 @@ export default function Home() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
-                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                {mounted && (theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />)}
               </button>
-              <div className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors relative z-80">
+              <div className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors relative z-50">
                 <GoogleTranslate />
               </div>
             </div>
@@ -116,8 +122,8 @@ export default function Home() {
                 </div>
               </div>
               <motion.div
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 200 }}
+                whileHover={{ scale: 1.005 }}
+                transition={{ type: "spring", stiffness: 100 }}
                 className="relative w-full overflow-hidden rounded-2xl shadow-xl"
               >
                 {theme === "dark" ? (

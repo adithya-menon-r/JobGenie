@@ -25,7 +25,7 @@ const InterviewLit = () => {
 
     return (
         <div className="px-6 py-8">
-            <h2 className="font-bold text-3xl text-gray-900 mb-6">
+            <h2 className="font-bold text-3xl text-gray-300 mb-6">
                 📂 Your Previous Interviews
             </h2>
 
@@ -35,7 +35,7 @@ const InterviewLit = () => {
                         <InterviewItemCard interview={interview} key={index} />
                     ))
                 ) : (
-                    <p className="text-gray-600 text-md">
+                    <p className="text-gray-400 text-md">
                         No interviews found.
                     </p>
                 )}

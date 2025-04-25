@@ -7,8 +7,8 @@ const DashboardPage = () => {
     return (
         <DashboardLayout>
             <div className='p-10'>
-                <h2 className='font-bold text-3xl text-gray-900'>Dashboard</h2>
-                <h2 className='text-gray-600 mt-2'>Create and Start your AI Mock Interview</h2>
+                <h2 className='font-extrabold text-3xl text-gray-400'>Dashboard</h2>
+                <h2 className='text-gray-400 mt-2'>Create and Start your AI Mock Interview</h2>
 
                 <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
                     <AddNewInterview />
