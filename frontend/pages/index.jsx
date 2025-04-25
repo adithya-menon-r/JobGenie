@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/jobs", label: "Find Jobs" },
-  { href: "/resume", label: "Resume Tools" },
+  { href: "/resume-tools", label: "Resume Tools" },
   { href: "/interviews", label: "Interview Prep" },
   { href: "/career-guidance", label: "Career Guidance" },
 ];
