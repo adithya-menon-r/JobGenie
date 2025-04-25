@@ -85,10 +85,10 @@ JobGenie is a comprehensive **AI-powered career assistant** built to supercharge
 
 | Name             | Role                              
 |------------------|-----------------------------------
-| **Priyansh Sharma**  | Full Stack Dev, AI Integration     
-| *Aditya Menon*     | Resume & ATS Module Lead         
-| *Teammate 3*     | UI/UX, LinkedIn Integration      
-| *Teammate 4*     | Chatbot & Backend APIs          
+| **Priyansh Narang**  | The AI Mock Interview    
+| *Adithya Menon*     | Resume & ATS Module Lead         
+| *Rahul K*     | LinkedIn Integration      
+| *Kaushal Loya*     | Chatbot and the career guidance        
 
 ---
 
