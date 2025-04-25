@@ -37,8 +37,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const navigation = [
     { name: "Jobs", href: "/jobs", icon: BriefcaseBusiness },
-    { name: "Resume", href: "/resume", icon: FileText },
-    { name: "Cover Letters", href: "/cover-letter", icon: FileText },
+    { name: "Resume Tools", href: "/resume-tools", icon: FileText },
     { name: "Mock Interview", href: "/interviews", icon: Speech },
     { name: "Career Guidance", href: "/career-guidance", icon: MessageSquare },
     { name: "Profile", href: "/profile", icon: User },
@@ -159,20 +158,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="border-t p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <UserButton afterSignOutUrl="/" />
-              {user && sidebarOpen && (
-                <span className="text-sm font-medium truncate">
-                  {user.fullName || user.firstName || user.emailAddresses[0]?.emailAddress}
-                </span>
-              )}
+              <button
+                className="flex items-center gap-3 w-full text-left p-2 rounded-md hover:bg-muted transition-colors"
+                onClick={() => router.push('/profile')}
+              >
+                <UserButton afterSignOutUrl="/" />
+                {user && sidebarOpen && (
+                  <span className="text-sm font-medium truncate">
+                    {user.fullName || user.firstName || user.emailAddresses[0]?.emailAddress}
+                  </span>
+                )}
+              </button>
             </div>
-            {sidebarOpen && (
-              <Button variant="ghost" size="icon" className="text-muted-foreground">
-                <SignOutButton>
-                  <LogOut className="h-4 w-4" />
-                </SignOutButton>
-              </Button>
-            )}
           </div>
         </div>
       </aside>
