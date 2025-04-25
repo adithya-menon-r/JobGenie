@@ -46,7 +46,7 @@ const FeedbackPage = () => {
         <div className="px-6 md:px-12 py-10 max-w-6xl mx-auto text-gray-100  min-h-screen">
             <div className="text-center mb-12">
                 <h2 className="text-5xl font-bold text-green-400 drop-shadow-lg">🎉 Congratulations!</h2>
-                <h3 className="text-3xl font-semibold mt-3 text-white">Here's your Interview Feedback</h3>
+                <h3 className="text-3xl font-semibold mt-3 text-black">Here's your Interview Feedback</h3>
             </div>
 
             {feedbackList.length === 0 ? (

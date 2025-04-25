@@ -45,7 +45,7 @@ const Questions = ({ mockInterviewQuestion, activeQuestionIndex }) => {
                     ))}
                 </div>
 
-                <div className="text-md md:text-lg font-semibold text-white">
+                <div className="text-md md:text-lg font-semibold text-black ">
                     {mockInterviewQuestion[activeQuestionIndex]?.question}
                 </div>
 

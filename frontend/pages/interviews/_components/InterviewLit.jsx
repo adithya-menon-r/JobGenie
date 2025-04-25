@@ -25,7 +25,7 @@ const InterviewLit = () => {
 
     return (
         <div className="px-6 py-8">
-            <h2 className="font-bold text-3xl text-gray-300 mb-6">
+            <h2 className="font-bold text-3xl text-black mb-6">
                 📂 Your Previous Interviews
             </h2>
 

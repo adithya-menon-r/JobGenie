@@ -43,21 +43,8 @@ const GoogleTranslate = () => {
     useEffect(() => {
         setMounted(true);
 
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setShowDropdown(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        if (!document.getElementById('google-translate-script')) {
-            const googleDiv = document.createElement('div');
-            googleDiv.id = 'google_translate_element';
-            googleDiv.style.display = 'none';
-            document.body.appendChild(googleDiv);
-
-            window.googleTranslateElementInit = function () {
+        const googleTranslateElementInit = () => {
+            if (window.google && window.google.translate) {
                 new window.google.translate.TranslateElement(
                     {
                         pageLanguage: 'en',
@@ -67,10 +54,21 @@ const GoogleTranslate = () => {
                     },
                     'google_translate_element'
                 );
-            };
+            }
+        };
+
+        // Only create elements if they don't exist
+        if (!document.getElementById('google_translate_element')) {
+            const googleDiv = document.createElement('div');
+            googleDiv.id = 'google_translate_element';
+            googleDiv.style.display = 'none';
+            document.body.appendChild(googleDiv);
+
+            // Assign the init function to window
+            window.googleTranslateElementInit = googleTranslateElementInit;
 
             const script = document.createElement('script');
-            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
             script.id = 'google-translate-script';
             script.async = true;
             document.body.appendChild(script);
@@ -164,3 +162,7 @@ const GoogleTranslate = () => {
 };
 
 export default GoogleTranslate;
+
+function handleClickOutside(this: Document, ev: MouseEvent) {
+    throw new Error("Function not implemented.");
+}

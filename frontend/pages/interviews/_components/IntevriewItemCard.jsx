@@ -29,7 +29,7 @@ const InterviewItemCard = ({ interview }) => {
                     onClick={() => router.push(`/interviews/interview/${interview?.mockId}/feedback`)}
                     size="sm"
                     variant="outline"
-                    className="flex-1 cursor-pointer border-blue-500 text-white  transition"
+                    className="flex-1 cursor-pointer border-blue-500 text-black  transition"
                 >
                     View Feedback
                 </Button>

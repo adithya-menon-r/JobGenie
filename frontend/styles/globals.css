@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary:"black";
+    --primary: "black";
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -123,49 +123,60 @@
   @apply my-2;
 }
 
-/* Google Translate global styles */
+/* Google Translate Widget Styles */
 .goog-te-banner-frame,
 .goog-te-gadget-icon,
-.goog-te-menu-value,
+.goog-te-menu-value span,
 .goog-te-gadget span,
 .goog-logo-link {
   display: none !important;
 }
 
-.goog-te-menu-frame {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 8px !important;
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0 !important;
 }
 
-.goog-te-menu2 {
-  border: none !important;
+.goog-te-gadget .goog-te-combo {
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
   padding: 6px !important;
-  border-radius: 8px !important;
+  width: 100% !important;
+  font-size: 14px !important;
   background-color: var(--background) !important;
 }
 
-.goog-te-menu2-item div {
-  padding: 8px 12px !important;
-  color: var(--foreground) !important;
-  font-family: inherit !important;
-  font-size: 14px !important;
-  border-radius: 4px !important;
-}
-
-.goog-te-menu2-item:hover div {
-  background-color: hsl(var(--primary) / 0.1) !important;
-}
-
-.dark .goog-te-menu2 {
+/* Dark mode specific styles */
+.dark .goog-te-gadget .goog-te-combo {
   background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
   border-color: hsl(var(--border)) !important;
-  color: hsl(var(--foreground)) !important;
 }
 
-.dark .goog-te-menu2-item div {
-  color: hsl(var(--foreground)) !important;
+.skiptranslate {
+  display: none !important;
 }
 
-.dark .goog-te-menu2-item:hover div {
-  background-color: hsl(var(--primary) / 0.1) !important;
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix for translated button text */
+button.translated {
+  min-height: auto !important;
 }

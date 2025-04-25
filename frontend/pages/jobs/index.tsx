@@ -156,13 +156,13 @@ export default function Jobs() {
                 </div>
                 <ResumeUpload onUpload={setResumeFile} />
                 <Button
-                  onClick={handleSearch}
-                  disabled={loading || !resumeFile}
-                  className="w-full"
-                >
-                  <Search className="mr-2 h-4 w-4" />
-                  {loading ? "Searching..." : "Search Jobs"}
-                </Button>
+                onClick={handleSearch}
+                disabled={loading || !resumeFile}
+                className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+              >
+                <Search className="mr-2 h-4 w-4" />
+                {loading ? "Searching..." : "Search Jobs"}
+              </Button>
               </div>
               <div className="w-full md:w-2/3">
                 {loading ? (
