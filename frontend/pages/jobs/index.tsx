@@ -158,11 +158,12 @@ export default function Jobs() {
                 <Button
                   onClick={handleSearch}
                   disabled={loading || !resumeFile}
-                  className="w-full"
+                  className="w-full bg-black text-white hover:bg- dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
                   <Search className="mr-2 h-4 w-4" />
                   {loading ? "Searching..." : "Search Jobs"}
                 </Button>
+
               </div>
               <div className="w-full md:w-2/3">
                 {loading ? (
