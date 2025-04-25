@@ -128,27 +128,26 @@ const CareerChatbot = () => {
 
     return (
         <>
-            {/* Single Chat toggle button */}
+            {/* Chat toggle button */}
             <button
-                className="chatbot-toggle"
                 onClick={toggleChat}
                 style={{
                     position: 'fixed',
                     bottom: '20px',
                     right: '20px',
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    backgroundColor: '#2563eb',
-                    color: 'white',
+                    width: '50px',
+                    height: '50px',
+                    backgroundColor: '#1F2937',
+                    color: '#FFFFFF',
                     border: 'none',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
                     zIndex: 999,
-                    transition: 'transform 0.3s ease, background-color 0.3s ease'
+                    transition: 'transform 0.3s ease, background-color 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
                 }}
             >
                 {isOpen ? <XCircle size={24} /> : <MessageSquare size={24} />}
@@ -164,24 +163,23 @@ const CareerChatbot = () => {
                         right: '20px',
                         width: '350px',
                         height: '500px',
-                        backgroundColor: 'var(--background-color, white)',
+                        backgroundColor: 'hsl(var(--background))',
                         borderRadius: '12px',
-                        boxShadow: '0 6px 24px rgba(0,0,0,0.15)',
+                        boxShadow: '0 6px 24px rgba(0, 0, 0, 0.15)',
                         display: 'flex',
                         flexDirection: 'column',
                         overflow: 'hidden',
                         zIndex: 998,
-                        border: '1px solid var(--border-color, #e0e0e0)'
+                        border: '1px solid hsl(var(--border))'
                     }}
                 >
                     {/* Chat header */}
                     <div
-                        className="chatbot-header"
                         style={{
                             padding: '16px',
-                            borderBottom: '1px solid var(--border-color, #e0e0e0)',
-                            backgroundColor: '#2563eb',
-                            color: 'white',
+                            borderBottom: '1px solid hsl(var(--border))',
+                            backgroundColor: '#1F2937',
+                            color: '#FFFFFF',
                             fontWeight: 600,
                             display: 'flex',
                             alignItems: 'center',
@@ -190,7 +188,7 @@ const CareerChatbot = () => {
                     >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <Bot size={20} />
-                            <span>Career Coach AI</span>
+                            <span>Career Assistant</span>
                         </div>
                         <div style={{ display: 'flex', gap: '12px' }}>
                             <button
@@ -198,7 +196,7 @@ const CareerChatbot = () => {
                                 style={{
                                     background: 'none',
                                     border: 'none',
-                                    color: 'white',
+                                    color: '#FFFFFF',
                                     cursor: 'pointer',
                                     opacity: 0.8,
                                     padding: '4px',
@@ -207,7 +205,6 @@ const CareerChatbot = () => {
                                     alignItems: 'center',
                                     gap: '4px'
                                 }}
-                                title="Clear chat history"
                             >
                                 Clear Chat
                             </button>
@@ -228,7 +225,8 @@ const CareerChatbot = () => {
                             padding: '16px',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '12px'
+                            gap: '12px',
+                            backgroundColor: 'hsl(var(--background))'
                         }}
                     >
                         {messages.map((msg, index) => (
@@ -240,34 +238,36 @@ const CareerChatbot = () => {
                                     padding: '12px 16px',
                                     borderRadius: '12px',
                                     alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                                    backgroundColor: msg.role === 'user' ? '#2563eb' : 'var(--message-bg, #f0f0f0)',
-                                    color: msg.role === 'user' ? 'white' : 'var(--text-color, #333)',
-                                    boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
-                                    fontSize: '14px',
-                                    lineHeight: '1.5'
+                                    backgroundColor: msg.role === 'user' ? '#1F2937' : 'hsl(var(--muted))',
+                                    color: msg.role === 'user' ? '#FFFFFF' : 'hsl(var(--foreground))',
+                                    display: 'flex',
+                                    gap: '8px',
+                                    alignItems: 'flex-start',
+                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
                                 }}
                             >
-                                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                                {msg.role === 'bot' && <Bot size={16} style={{ marginTop: '4px' }} />}
+                                <div style={{
+                                    whiteSpace: 'pre-wrap',
+                                    wordBreak: 'break-word'
+                                }}>
+                                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                                </div>
+                                {msg.role === 'user' && <User size={16} style={{ marginTop: '4px' }} />}
                             </div>
                         ))}
 
                         {isLoading && (
-                            <div
-                                className="loading-indicator"
-                                style={{
-                                    alignSelf: 'flex-start',
-                                    padding: '12px 16px',
-                                    borderRadius: '12px',
-                                    backgroundColor: 'var(--message-bg, #f0f0f0)',
-                                    color: 'var(--text-color, #333)',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <div className="typing-dots">
-                                    <span className="dot" style={{ animationDelay: '0s' }}>•</span>
-                                    <span className="dot" style={{ animationDelay: '0.2s' }}>•</span>
-                                    <span className="dot" style={{ animationDelay: '0.4s' }}>•</span>
-                                </div>
+                            <div className="typing-dots" style={{
+                                alignSelf: 'flex-start',
+                                backgroundColor: 'hsl(var(--muted))',
+                                padding: '12px 16px',
+                                borderRadius: '12px',
+                                color: 'hsl(var(--foreground))'
+                            }}>
+                                <span className="dot">•</span>
+                                <span className="dot">•</span>
+                                <span className="dot">•</span>
                             </div>
                         )}
 
@@ -279,8 +279,8 @@ const CareerChatbot = () => {
                         onSubmit={handleSubmit}
                         style={{
                             padding: '12px',
-                            borderTop: '1px solid var(--border-color, #e0e0e0)',
-                            backgroundColor: 'var(--background-color-light, #fafafa)',
+                            borderTop: '1px solid hsl(var(--border))',
+                            backgroundColor: 'hsl(var(--background))',
                             display: 'flex',
                             gap: '8px'
                         }}
@@ -295,12 +295,12 @@ const CareerChatbot = () => {
                                 flex: 1,
                                 padding: '12px 16px',
                                 borderRadius: '20px',
-                                border: '1px solid var(--border-color, #e0e0e0)',
+                                border: '1px solid hsl(var(--border))',
                                 outline: 'none',
                                 fontSize: '14px',
                                 resize: 'none',
-                                backgroundColor: 'var(--background-color, white)',
-                                color: 'var(--text-color, #333)',
+                                backgroundColor: 'hsl(var(--background))',
+                                color: 'hsl(var(--foreground))',
                                 lineHeight: '1.5',
                                 maxHeight: '100px',
                                 minHeight: '44px'
@@ -311,8 +311,8 @@ const CareerChatbot = () => {
                             type="submit"
                             disabled={!input.trim() || isLoading}
                             style={{
-                                backgroundColor: '#2563eb',
-                                color: 'white',
+                                backgroundColor: '#1F2937',
+                                color: '#FFFFFF',
                                 borderRadius: '50%',
                                 width: '44px',
                                 height: '44px',
@@ -332,15 +332,14 @@ const CareerChatbot = () => {
                 </div>
             )}
 
-            {/* Add styling for typing dots animation */}
             <style jsx global>{`
                 .typing-dots {
                     display: flex;
+                    gap: 4px;
                 }
                 .typing-dots .dot {
                     font-size: 24px;
                     line-height: 10px;
-                    margin-right: 3px;
                     animation: blink 1.5s infinite;
                 }
                 @keyframes blink {
@@ -348,12 +347,35 @@ const CareerChatbot = () => {
                     20% { opacity: 1; }
                     100% { opacity: 0.2; }
                 }
+                .chatbot-messages {
+                    scrollbar-width: thin;
+                    scrollbar-color: hsl(var(--muted)) transparent;
+                }
+                .chatbot-messages::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .chatbot-messages::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .chatbot-messages::-webkit-scrollbar-thumb {
+                    background-color: hsl(var(--muted));
+                    border-radius: 3px;
+                }
                 .chatbot-messages a {
-                    color: #2563eb;
+                    color: hsl(var(--primary));
                     text-decoration: underline;
                 }
-                .chatbot-messages ul, .chatbot-messages ol {
+                .chatbot-messages ul, 
+                .chatbot-messages ol {
                     margin-left: 20px;
+                    margin-top: 0.5em;
+                    margin-bottom: 0.5em;
+                }
+                .chatbot-messages li {
+                    margin-bottom: 0.25em;
+                }
+                .chatbot-messages p {
+                    margin: 0.5em 0;
                 }
             `}</style>
         </>

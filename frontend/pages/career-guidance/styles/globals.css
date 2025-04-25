@@ -12,3 +12,7 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+:root {
+    --primary-rgb: 59, 130, 246; /* This should match your primary color in RGB format */
+}

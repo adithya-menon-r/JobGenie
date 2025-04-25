@@ -24,6 +24,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { SignOutButton, UserButton, useUser } from "@clerk/nextjs"
 import GoogleTranslate from "../google-translate"
+import { CareerChatbotProvider } from "./CareerChatbotProvider";
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -181,7 +182,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="container p-6">
           {children}
         </div>
+        <CareerChatbotProvider />
       </main>
     </div>
-  )
+  );
 }

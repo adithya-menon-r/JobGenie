@@ -117,8 +117,8 @@ const CareerGuidance = () => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}>JobGenie - Career Guidance</h1>
-                <p className={styles.subtitle}>Get personalized career advice, skill development recommendations, and industry insights.</p>
+                <h1 className={styles.title}>Career Guidance</h1>
+                <p className={styles.subtitle}>Get career advice, skill development recommendations, and industry insights.</p>
             </div>
 
             <div className={styles.tabNavigation}>
