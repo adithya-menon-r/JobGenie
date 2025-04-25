@@ -59,23 +59,23 @@ const settingsOptions = [
 export default function SettingsPage() {
   return (
     <DashboardLayout>
-      <div className="max-h-0 px-6 py-10 text-white font-sans">
+      <div className="px-6 py-10 text-slate-800 font-sans bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <header className="mb-10">
-            <h1 className="text-3xl font-bold text-center mb-2">Account Settings</h1>
-            <p className="text-center text-slate-300 max-w-2xl mx-auto">
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">Account Settings</h1>
+            <p className="text-center text-slate-600 max-w-2xl mx-auto">
               Customize your experience and manage your account preferences to optimize your job search journey.
             </p>
           </header>
 
-          <div className="bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden shadow-lg">
+          <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
             <Table>
               <TableHeader>
-                <TableRow className="border-b border-slate-700 hover:bg-transparent">
-                  <TableHead className="font-medium text-slate-300 w-16"></TableHead>
-                  <TableHead className="font-medium text-slate-300 w-1/4">Setting</TableHead>
-                  <TableHead className="font-medium text-slate-300">Description</TableHead>
-                  <TableHead className="font-medium text-slate-300 w-1/6"></TableHead>
+                <TableRow className="border-b border-slate-200 hover:bg-transparent">
+                  <TableHead className="font-medium text-slate-600 w-16"></TableHead>
+                  <TableHead className="font-medium text-slate-600 w-1/4">Setting</TableHead>
+                  <TableHead className="font-medium text-slate-600">Description</TableHead>
+                  <TableHead className="font-medium text-slate-600 w-1/6"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -85,24 +85,24 @@ export default function SettingsPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.05 }}
-                    className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors"
+                    className="border-b border-slate-200 hover:bg-slate-50 transition-colors"
                   >
                     <TableCell className="py-4">
-                      <div className="bg-slate-700 p-2 rounded-md inline-flex">
-                        <option.icon className="h-5 w-5 text-blue-400" />
+                      <div className="bg-slate-100 p-2 rounded-md inline-flex">
+                        <option.icon className="h-5 w-5 text-blue-600" />
                       </div>
                     </TableCell>
-                    <TableCell className="font-medium text-slate-200 py-4">
+                    <TableCell className="font-medium text-slate-800 py-4">
                       {option.title}
                     </TableCell>
-                    <TableCell className="text-slate-300 py-4">
+                    <TableCell className="text-slate-600 py-4">
                       {option.description}
                     </TableCell>
                     <TableCell className="text-right py-4">
                       <Link href={option.link}>
                         <Button
                           size="sm"
-                          className="bg-slate-700 hover:bg-blue-600 text-slate-200 transition-all rounded flex items-center gap-1 border border-slate-600 hover:border-blue-500"
+                          className="bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-all rounded flex items-center gap-1 border border-slate-200 hover:border-blue-500"
                         >
                           <span>Configure</span>
                           <ChevronRight className="h-3 w-3" />
@@ -115,7 +115,7 @@ export default function SettingsPage() {
             </Table>
           </div>
 
-          <footer className="mt-8 text-center text-sm text-slate-400">
+          <footer className="mt-8 text-center text-sm text-slate-500">
             <p>Changes to settings are automatically saved to your account</p>
           </footer>
         </div>

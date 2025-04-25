@@ -81,6 +81,7 @@
     background: hsl(var(--card));
     border-radius: 12px;
     padding: 24px;
+    border: 1px black solid;
     box-shadow: 0 4px 12px hsl(var(--muted) / 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -118,6 +119,7 @@
 .chatCard {
     background: hsl(var(--card));
     border-radius: 16px;
+    border: 1px black solid;
     box-shadow: 0 6px 18px hsl(var(--muted) / 0.15);
     overflow: hidden;
     margin-bottom: 30px;
@@ -171,8 +173,8 @@
 
 .askButton {
     padding: 12px 24px;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background: black;
+    color: white;
     font-weight: 600;
     border: none;
     border-radius: 8px;
@@ -204,13 +206,24 @@
     transition: background 0.3s ease;
 }
 
-.micButton:hover {
-    background: hsl(var(--muted) / 0.5);
-}
 
 .micButtonListening {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background: black;
+    color: white;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 rgba(var(--primary-rgb), 0.4);
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);
+    }
+    50% {
+        box-shadow: 14 0 0 25px rgba(var(--primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+    }
 }
 
 /* Response container */

@@ -50,7 +50,7 @@
 
 .careerSearchInput:focus {
     outline: none;
-    border-color: hsl(var(--career-primary));
+    border-color: black;
 }
 
 .searchButton {
@@ -58,7 +58,7 @@
     align-items: center;
     justify-content: center;
     padding: 12px;
-    background-color: hsl(var(--career-primary));
+    background-color: black;
     color: hsl(var(--background));
     border: none;
     border-radius: 8px;
@@ -66,9 +66,6 @@
     transition: background-color 0.3s ease;
 }
 
-.searchButton:hover {
-    background-color: hsl(var(--career-primary-dark));
-}
 
 .searchButton:disabled {
     background-color: hsl(var(--career-border));
@@ -95,8 +92,9 @@
 }
 
 .skillTag {
-    background-color: hsl(var(--career-primary-light));
-    color: hsl(var(--career-primary-dark));
+    background-color: rgb(234, 234, 234);
+
+    color: black;
     padding: 6px 12px;
     border-radius: 16px;
     font-size: 14px;
@@ -121,16 +119,16 @@
     margin-bottom: 16px;
     position: relative;
     transition: all 0.3s ease;
-    border-left: 4px solid hsl(var(--career-primary));
+    border-left: 4px solid black;
 }
 
 .timelineConnector {
     position: absolute;
     left: -22px;
     bottom: -16px;
-    width: 2px;
-    height: 16px;
-    background-color: hsl(var(--career-primary));
+    width: 3px;
+    height: 20px;
+    background-color: black;
 }
 
 .nodeHeader {
