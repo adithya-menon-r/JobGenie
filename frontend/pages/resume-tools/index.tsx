@@ -45,7 +45,7 @@ export default function Resume() {
   const [coverLetterUrl, setCoverLetterUrl] = useState("")
 
   useEffect(() => {
-    if (isProcessing) { 
+    if (isProcessing) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [isProcessing])
@@ -172,7 +172,7 @@ export default function Resume() {
       await handleATSAnalysis();
 
       setIsComplete(true)
-      
+
       Promise.all([
         axios.post('http://localhost:5000/api/resume/customise', {
           resumeText: extractedText,
@@ -260,9 +260,8 @@ export default function Resume() {
 
         <div className="relative">
           <div
-            className={`space-y-6 transition-all duration-500 ${
-              isProcessing ? "opacity-0 translate-y-[-1rem] pointer-events-none absolute inset-x-0" : "opacity-100"
-            }`}
+            className={`space-y-6 transition-all duration-500 ${isProcessing ? "opacity-0 translate-y-[-1rem] pointer-events-none absolute inset-x-0" : "opacity-100"
+              }`}
           >
             <Card>
               <CardHeader className="pb-4">
@@ -271,9 +270,8 @@ export default function Resume() {
               </CardHeader>
               <CardContent>
                 <div
-                  className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-                    isDragging ? "border-primary bg-primary/5" : "border-muted"
-                  }`}
+                  className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${isDragging ? "border-primary bg-primary/5" : "border-muted"
+                    }`}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
@@ -332,16 +330,18 @@ export default function Resume() {
             </Card>
 
             <div className="flex justify-end">
-              <Button onClick={handleSubmit}>
+              <Button
+                className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
+                onClick={handleSubmit}
+              >
                 Analyse & Generate
               </Button>
             </div>
           </div>
 
           <div
-            className={`grid gap-6 grid-cols-1 md:grid-cols-2 transition-all duration-500 ${
-              isProcessing ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none absolute inset-x-0"
-            }`}
+            className={`grid gap-6 grid-cols-1 md:grid-cols-2 transition-all duration-500 ${isProcessing ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none absolute inset-x-0"
+              }`}
           >
             <Card>
               <CardHeader>
@@ -385,8 +385,9 @@ export default function Resume() {
                             />
                           </div>
                           <div className="mt-8 text-right">
-                            <Button 
+                            <Button
                               variant="secondary"
+                              className="bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/80"
                               onClick={() => router.push('/career-guidance')}
                             >
                               Get Career Guidance
@@ -466,11 +467,16 @@ export default function Resume() {
 
             {isComplete && (
               <div className="col-span-full flex justify-end gap-4 opacity-0 transition-opacity duration-300" style={{ animation: 'fadeIn 0.3s ease-out 0.6s forwards' }}>
-                <Button variant="outline" disabled={isCustomizing} onClick={downloadResume}>
+                <Button
+                  variant="outline"
+                  className="border-gray-300 bg-white hover:bg-gray-50 text-gray-800 dark:border-input dark:bg-background dark:hover:bg-accent dark:hover:text-accent-foreground"
+                  disabled={isCustomizing}
+                  onClick={downloadResume}
+                >
                   <div className="flex items-center gap-2">
                     {isCustomizing ? (
                       <>
-                        <div className="h-4 w-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                        <div className="h-4 w-4 rounded-full border-2 border-blue-600 border-t-transparent animate-spin dark:border-primary" />
                         <span>Customizing Resume...</span>
                       </>
                     ) : (
@@ -481,15 +487,16 @@ export default function Resume() {
                     )}
                   </div>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  disabled={isGeneratingCover} 
+                <Button
+                  variant="outline"
+                  className="border-gray-300 bg-white hover:bg-gray-50 text-gray-800 dark:border-input dark:bg-background dark:hover:bg-accent dark:hover:text-accent-foreground"
+                  disabled={isGeneratingCover}
                   onClick={downloadCoverLetter}
                 >
                   <div className="flex items-center gap-2">
                     {isGeneratingCover ? (
                       <>
-                        <div className="h-4 w-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                        <div className="h-4 w-4 rounded-full border-2 border-blue-600 border-t-transparent animate-spin dark:border-primary" />
                         <span>Generating Cover Letter...</span>
                       </>
                     ) : (
