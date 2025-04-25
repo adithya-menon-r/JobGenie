@@ -149,7 +149,7 @@
   font-weight: 600;
 }
 
-.tooltipCurrent, 
+.tooltipCurrent,
 .tooltipFuture {
   color: var(--text-secondary, #64748b);
   margin-top: 4px;
@@ -194,21 +194,69 @@
   line-height: 1.5;
 }
 
+.realTimeInsights {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.realTimeInsights h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.insightsBox {
+  background: var(--card);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 120px;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+
   .industryButtons,
   .insightTypeButtons {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .industryButton,
   .insightTypeButton {
     width: 100%;
     text-align: center;
     justify-content: center;
   }
-  
+
   .summaryCards {
     grid-template-columns: 1fr;
   }

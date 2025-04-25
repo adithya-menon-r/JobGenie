@@ -9,13 +9,46 @@ const IndustryInsightsDashboard = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('tech');
   const [selectedInsightType, setSelectedInsightType] = useState('skills');
   const [isClient, setIsClient] = useState(false);
+  const [newsInsights, setNewsInsights] = useState('');
+  const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+
+  const fetchIndustryNews = async () => {
+    setIsLoadingInsights(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/news/industry-fetch', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          industry: industries.find(i => i.id === selectedIndustry).name
+        }),
+      });
+
+      const data = await response.json();
+      if (!data.success) throw new Error(data.message);
+
+      setNewsInsights(data.summary);
+    } catch (error) {
+      console.error('Error fetching industry news:', error);
+      setNewsInsights('Unable to fetch industry insights at this time.');
+    } finally {
+      setIsLoadingInsights(false);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedIndustry) {
+      fetchIndustryNews();
+    }
+  }, [selectedIndustry]);
 
   useEffect(() => {
     setIsClient(true);
     // Load any saved preferences from localStorage
     const savedIndustry = localStorage.getItem('selectedIndustry');
     const savedInsightType = localStorage.getItem('selectedInsightType');
-    
+
     if (savedIndustry) setSelectedIndustry(savedIndustry);
     if (savedInsightType) setSelectedInsightType(savedInsightType);
   }, []);
@@ -257,34 +290,34 @@ const IndustryInsightsDashboard = () => {
           {selectedInsightType === 'growth' && 'Projected Job Growth (%)'}
           {` in ${industries.find(i => i.id === selectedIndustry).name}`}
         </h3>
-        
+
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height={400}>
-            <BarChart 
-              data={insightsData[selectedIndustry][selectedInsightType]} 
+            <BarChart
+              data={insightsData[selectedIndustry][selectedInsightType]}
               margin={{ top: 20, right: 30, left: 30, bottom: 100 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="name" 
-                angle={-45} 
-                textAnchor="end" 
-                height={100} 
+              <XAxis
+                dataKey="name"
+                angle={-45}
+                textAnchor="end"
+                height={100}
                 tick={{ fontSize: 12 }}
               />
-              <YAxis 
-                tick={{ fontSize: 12 }} 
+              <YAxis
+                tick={{ fontSize: 12 }}
                 domain={selectedInsightType === 'salaries' ? [0, 'dataMax + 20000'] : [0, 'dataMax + 10']}
-                tickFormatter={selectedInsightType === 'salaries' ? (value) => `$${value/1000}k` : undefined}
+                tickFormatter={selectedInsightType === 'salaries' ? (value) => `$${value / 1000}k` : undefined}
               />
               <Tooltip content={<CustomTooltip />} />
-              <Bar 
-                dataKey="value" 
+              <Bar
+                dataKey="value"
                 fill={
-                  selectedInsightType === 'skills' ? "#4f46e5" : 
-                  selectedInsightType === 'salaries' ? "#10b981" : 
-                  "#f59e0b"
-                } 
+                  selectedInsightType === 'skills' ? "#4f46e5" :
+                    selectedInsightType === 'salaries' ? "#10b981" :
+                      "#f59e0b"
+                }
                 barSize={40}
                 radius={[4, 4, 0, 0]}
               />
@@ -293,94 +326,16 @@ const IndustryInsightsDashboard = () => {
         </div>
       </div>
 
-      <div className={styles.insightsSummary}>
-        <h3>Key Takeaways for {industries.find(i => i.id === selectedIndustry).name}</h3>
-        <div className={styles.summaryCards}>
-          {selectedInsightType === 'skills' && (
-            <>
-              <div className={styles.summaryCard}>
-                <h4>Most In-Demand</h4>
-                <p className={styles.insightValue}>{insightsData[selectedIndustry].skills[0].name}</p>
-                <p className={styles.insightDetail}>With a demand score of {insightsData[selectedIndustry].skills[0].value} and growth of {insightsData[selectedIndustry].skills[0].growth}</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Fastest Growing</h4>
-                <p className={styles.insightValue}>
-                  {insightsData[selectedIndustry].skills.reduce((prev, current) => {
-                    const prevGrowth = parseInt(prev.growth.replace('%', '').replace('+', ''));
-                    const currentGrowth = parseInt(current.growth.replace('%', '').replace('+', ''));
-                    return prevGrowth > currentGrowth ? prev : current;
-                  }).name}
-                </p>
-                <p className={styles.insightDetail}>With a growth rate of {
-                  insightsData[selectedIndustry].skills.reduce((prev, current) => {
-                    const prevGrowth = parseInt(prev.growth.replace('%', '').replace('+', ''));
-                    const currentGrowth = parseInt(current.growth.replace('%', '').replace('+', ''));
-                    return prevGrowth > currentGrowth ? prev : current;
-                  }).growth
-                }</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Recommended Action</h4>
-                <p className={styles.insightDetail}>Focus on developing the top 3 skills to maximize your market value in this industry.</p>
-              </div>
-            </>
-          )}
-
-          {selectedInsightType === 'salaries' && (
-            <>
-              <div className={styles.summaryCard}>
-                <h4>Highest Paying Role</h4>
-                <p className={styles.insightValue}>{insightsData[selectedIndustry].salaries[0].name}</p>
-                <p className={styles.insightDetail}>With an average salary of {formatCurrency(insightsData[selectedIndustry].salaries[0].value)}</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Fastest Salary Growth</h4>
-                <p className={styles.insightValue}>
-                  {insightsData[selectedIndustry].salaries.reduce((prev, current) => {
-                    const prevGrowth = parseInt(prev.growth.replace('%', '').replace('+', ''));
-                    const currentGrowth = parseInt(current.growth.replace('%', '').replace('+', ''));
-                    return prevGrowth > currentGrowth ? prev : current;
-                  }).name}
-                </p>
-                <p className={styles.insightDetail}>With a growth rate of {
-                  insightsData[selectedIndustry].salaries.reduce((prev, current) => {
-                    const prevGrowth = parseInt(prev.growth.replace('%', '').replace('+', ''));
-                    const currentGrowth = parseInt(current.growth.replace('%', '').replace('+', ''));
-                    return prevGrowth > currentGrowth ? prev : current;
-                  }).growth
-                }</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Salary Range</h4>
-                <p className={styles.insightDetail}>
-                  From {formatCurrency(Math.min(...insightsData[selectedIndustry].salaries.map(item => item.value)))} to {formatCurrency(Math.max(...insightsData[selectedIndustry].salaries.map(item => item.value)))} annually
-                </p>
-              </div>
-            </>
-          )}
-
-          {selectedInsightType === 'growth' && (
-            <>
-              <div className={styles.summaryCard}>
-                <h4>Highest Growth Role</h4>
-                <p className={styles.insightValue}>{insightsData[selectedIndustry].growth[0].name}</p>
-                <p className={styles.insightDetail}>With projected growth of {insightsData[selectedIndustry].growth[0].value}%</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Future Outlook</h4>
-                <p className={styles.insightValue}>
-                  {insightsData[selectedIndustry].growth.filter(item => item.future === 'Very High').length} roles
-                </p>
-                <p className={styles.insightDetail}>Have a "Very High" future demand outlook</p>
-              </div>
-              <div className={styles.summaryCard}>
-                <h4>Emerging Opportunities</h4>
-                <p className={styles.insightDetail}>
-                  Roles like {insightsData[selectedIndustry].growth[0].name} and {insightsData[selectedIndustry].growth[1].name} are showing emerging importance in this industry.
-                </p>
-              </div>
-            </>
+      <div className={styles.realTimeInsights}>
+        <h3>Real-Time Industry Insights</h3>
+        <div className={styles.insightsBox}>
+          {isLoadingInsights ? (
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingSpinner}></div>
+              <p>Analyzing latest industry news...</p>
+            </div>
+          ) : (
+            <p>{newsInsights}</p>
           )}
         </div>
       </div>
