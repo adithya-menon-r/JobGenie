@@ -85,7 +85,7 @@ JobGenie is a comprehensive **AI-powered career assistant** built to supercharge
 
 | Name             | Role                              
 |------------------|-----------------------------------
-| **Priyansh Narang**  | The AI Mock Interview    
+| *Priyansh Narang* | The AI Mock Interview    
 | *Adithya Menon*     | Resume & ATS Module Lead         
 | *Rahul K*     | LinkedIn Integration      
 | *Kaushal Loya*     | Chatbot and the career guidance        
