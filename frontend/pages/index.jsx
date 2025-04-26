@@ -5,11 +5,11 @@ import {
   FileText,
   MessageSquare,
   Sparkles,
-  UserCheck,
   ClipboardList,
   Brain,
   Moon,
   Sun,
+  Factory,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,7 +95,7 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-16 md:py-24 lg:py-32">
+        <section className="w-full py-16 md:py-24 lg:py-20">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
               <div className="space-y-6">
@@ -104,13 +104,13 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-7xl">
-                    <span className="block  font-serif">Your wish for a</span>
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-2xl md:text-6xl">
+                    <span className="block  font-serif">Your wish for the</span>
                     <span className="text-blue-600 font-extrabold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent italic">Perfect Job {""}</span>.
                     <span className="block  font-serif"> Granted.</span>
                   </h1>
                   <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-[600px]  font-light">
-                    JobGenie uses advanced AI to match you with perfect opportunities, optimize your resume, and prepare you for interviews.
+                  JobGenie uses advanced AI to match you with jobs, optimize your resume, guide your career, and prep you for interviews
                   </p>
                 </motion.div>
                 <div className="flex flex-wrap gap-4">
@@ -123,8 +123,8 @@ export default function Home() {
               </div>
               <motion.div
                 whileHover={{ scale: 1.005 }}
-                transition={{ type: "spring", stiffness: 100 }}
-                className="relative w-full overflow-hidden rounded-2xl shadow-xl"
+                transition={{ type: "tween" }}
+                className="relative w-full overflow-hidden rounded-2xl shadow-md"
               >
                 {theme === "dark" ? (
                   <Image
@@ -137,7 +137,7 @@ export default function Home() {
                   />
                 ) : (
                   <Image
-                    src="/hero.png"
+                    src="/hero-light.png"
                     width={600}
                     height={600}
                     alt="JobGenie Dashboard Preview"
@@ -159,12 +159,12 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <Feature icon={BriefcaseBusiness} title="AI Job Matching" desc="Get personalized job recommendations with compatibility scores based on your skills." />
-              <Feature icon={FileText} title="Resume Optimization" desc="AI analyzes and optimizes your resume for specific roles to increase visibility." />
+              <Feature icon={BriefcaseBusiness} title="AI Job Matching" desc="Get personalized job recommendations with compatibility scores based on your resume and skills." />
+              <Feature icon={FileText} title="Resume Optimisation" desc="AI tailors your resume and cover letters for specific roles, optimising for ATS to increase visibility." />
               <Feature icon={MessageSquare} title="Interview Preparation" desc="Practice with AI-powered mock interviews and receive real-time feedback." />
-              <Feature icon={UserCheck} title="Profile Assessment" desc="Get instant feedback on your professional profile and areas for improvement." />
-              <Feature icon={ClipboardList} title="Skill Gap Analysis" desc="Discover what skills you need to develop for your target roles." />
+              <Feature icon={Factory} title="Industry Trends Analysis" desc="Stay updated with real time industry news and job trends to improve your professional profile." />
               <Feature icon={Brain} title="AI Career Planner" desc="Personalized career paths and strategies tailored to your goals." />
+              <Feature icon={ClipboardList} title="Skill Gap Analysis" desc="Discover what skills you need to develop for your target roles." />
             </div>
           </div>
         </section>
@@ -179,17 +179,17 @@ export default function Home() {
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
               <TestimonialCard
-                name="Aditya Menon"
+                name="Kaushal Loya"
                 feedback="JobGenie landed me my dream role in just 2 weeks! The AI suggestions were spot on."
                 title="Product Designer"
               />
               <TestimonialCard
-                name="Kaushal Loya"
+                name="Adithya Menon R"
                 feedback="I optimized my resume using JobGenie and started getting 3x more callbacks."
                 title="Data Analyst"
               />
               <TestimonialCard
-                name="Rahul K."
+                name="Rahul K"
                 feedback="The interview prep feature was so realistic. I felt confident and prepared."
                 title="Software Developer"
               />
