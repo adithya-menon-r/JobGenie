@@ -26,7 +26,6 @@ export default function ProfilePage() {
     const [isEditing, setIsEditing] = useState(false);
     const [activeTab, setActiveTab] = useState("account");
 
-    // Form state
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -34,7 +33,6 @@ export default function ProfilePage() {
         bio: ""
     });
 
-    // Initialize form data when user data is loaded
     useState(() => {
         if (isLoaded && isSignedIn && user) {
             setFormData({
@@ -46,7 +44,6 @@ export default function ProfilePage() {
         }
     }, [isLoaded, isSignedIn, user]);
 
-    // Handle form input changes
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormData(prev => ({
@@ -55,9 +52,7 @@ export default function ProfilePage() {
         }));
     };
 
-    // Toggle edit mode
     const toggleEditMode = () => {
-        // If canceling edit mode, reset form data
         if (isEditing) {
             setFormData({
                 firstName: user.firstName || "",
@@ -69,12 +64,9 @@ export default function ProfilePage() {
         setIsEditing(!isEditing);
     };
 
-    // Save profile changes
     const saveChanges = () => {
-        // Here you would typically make an API call to update the user profile
-        // For demonstration purposes, we'll just toggle out of edit mode
+        // Edit Profile functionality is not implemeneted yet
         setIsEditing(false);
-        // Show success message or handle errors from API call
     };
 
     if (!isLoaded || !isSignedIn) {
@@ -330,7 +322,7 @@ export default function ProfilePage() {
                                             <Switch
                                                 defaultChecked={true}
                                                 disabled={!isEditing}
-                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input data-[state=checked]:border-primary data-[state=unchecked]:border-input"
                                             />
                                         </div>
 
@@ -344,7 +336,7 @@ export default function ProfilePage() {
                                             <Switch
                                                 defaultChecked={true}
                                                 disabled={!isEditing}
-                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input data-[state=checked]:border-primary data-[state=unchecked]:border-input"
                                             />
                                         </div>
 
@@ -357,7 +349,7 @@ export default function ProfilePage() {
                                             </div>
                                             <Switch
                                                 disabled={!isEditing}
-                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input data-[state=checked]:border-primary data-[state=unchecked]:border-input"
                                             />
                                         </div>
 
@@ -371,12 +363,12 @@ export default function ProfilePage() {
                                             <Switch
                                                 defaultChecked={true}
                                                 disabled={!isEditing}
-                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                                                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-input data-[state=checked]:border-primary data-[state=unchecked]:border-input"
                                             />
                                         </div>
 
                                         {isEditing && (
-                                            <Button className="mt-4 gap-2">
+                                            <Button className="mt-6 gap-2" onClick={saveChanges}>
                                                 <Save className="h-4 w-4" />
                                                 Save preferences
                                             </Button>

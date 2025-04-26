@@ -66,7 +66,7 @@ const CareerPathVisualizer = () => {
     return (
         <div className={styles.careerPathVisualizer}>
             <div className={styles.visualizerHeader}>
-                <h2>Career Path Explorer</h2>
+                <h2 style={{ fontWeight: 'bold' }}>Career Path Explorer</h2>
                 <p>Enter any career to view detailed progression stages and requirements</p>
 
                 <div className={styles.careerSearch}>
@@ -85,7 +85,7 @@ const CareerPathVisualizer = () => {
                             className={styles.searchButton}
                             disabled={isLoading || !careerInput.trim()}
                         >
-                            {isLoading ? 'Loading...' : <Search size={20} />}
+                            <Search size={20} />
                         </button>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ const CareerPathVisualizer = () => {
 
             {isLoading && (
                 <div className={styles.loadingSection}>
-                    <div className={styles.spinner}></div>
+                    <div className={styles.spinner} />
                     <p>Generating career path...</p>
                 </div>
             )}

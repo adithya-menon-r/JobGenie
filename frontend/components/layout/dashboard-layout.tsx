@@ -51,6 +51,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="flex min-h-screen">
+      {/* Mobile menu button */}
       <Button
         variant="outline"
         size="icon"
@@ -64,122 +65,119 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 z-20 flex h-screen flex-col border-r bg-background transition-all duration-300 ease-in-out",
-          sidebarOpen
-            ? "w-64 translate-x-0"
-            : "w-0 -translate-x-full md:translate-x-0 md:w-20"
+          "fixed top-0 left-0 z-20 flex h-screen flex-col bg-background transition-all duration-300 ease-in-out border-r relative",
+          sidebarOpen ? "w-64" : "w-[68px]",
+          "md:translate-x-0",
+          !sidebarOpen && "-translate-x-full md:translate-x-0"
         )}
       >
-        <div className="flex h-16 items-center justify-between border-b px-4">
-          <Link href="/" className={cn(
-            "flex items-center gap-2 hover:opacity-80 transition",
-            !sidebarOpen && "md:justify-center md:px-0"
-          )}>
-            <Sparkles className="h-6 w-6 text-primary flex-shrink-0" />
-            <span className={cn(
-              "text-xl font-bold transition-opacity duration-300",
-              !sidebarOpen && "md:hidden"
-            )}>JobGenie</span>
+        {/* Sidebar header */}
+        <div className={cn(
+          "flex h-16 items-center border-b px-3",
+          sidebarOpen ? "justify-between" : "justify-center"
+        )}>
+          <Link 
+            href="/" 
+            className="flex items-center gap-3"
+          >
+            <Sparkles className="h-6 w-6 text-primary shrink-0" />
+            {sidebarOpen && (
+              <span className="text-xl font-bold">JobGenie</span>
+            )}
           </Link>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleSidebar}
-            className="transition-all duration-300 ease-in-out hover:bg-muted"
-          >
-            {sidebarOpen ? (
+          {sidebarOpen ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleSidebar}
+              className="h-8 w-8"
+            >
               <PanelLeftClose className="h-5 w-5" />
-            ) : (
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleSidebar}
+              className="absolute -right-4 top-4 h-8 w-8 rounded-full border bg-background shadow-sm hover:bg-accent transition-colors hidden md:flex"
+            >
               <PanelLeftOpen className="h-5 w-5" />
-            )}
-            <span className="sr-only">Toggle Sidebar</span>
-          </Button>
+            </Button>
+          )}
         </div>
 
-        <nav className="flex-1 overflow-auto py-4">
-          <div className="px-3">
-            {/* Theme and Language Controls - UPDATED */}
-            {/* Theme and Language Controls - COMPLETELY FIXED */}
+        {/* Navigation */}
+        <div className="flex-1 overflow-auto">
+          <div className="p-3 space-y-2">
+            {/* Theme and Language Controls */}
             <div className={cn(
-              "mb-4 flex flex-col items-center gap-3",
-              sidebarOpen ? "px-3 items-start flex-row gap-2" : "px-1 items-center"
+              "flex gap-2 mb-4",
+              !sidebarOpen && "flex-col items-center"
             )}>
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="flex h-9 w-9 items-center justify-center rounded-md border bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-md border bg-background hover:bg-accent transition-colors"
               >
-                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                {theme === "dark" ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
               </button>
 
-              <div className="relative z-50" style={{ position: 'relative' }}>
-                <div className="flex h-9 w-9 items-center justify-center rounded-md border bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground">
+              <div className="relative z-50">
+                <div className="flex h-9 w-9 items-center justify-center rounded-md border bg-background hover:bg-accent transition-colors">
                   <GoogleTranslate />
                 </div>
-                {/* Force the dropdown outside the sidebar */}
-                <style jsx global>{`
-      .google-translate-dropdown {
-        position: fixed !important;
-        left: ${sidebarOpen ? 'auto' : '5rem'} !important;
-        z-index: 100 !important;
-      }
-    `}</style>
               </div>
             </div>
 
             {/* Navigation links */}
-            <div className="space-y-1">
+            <nav className="space-y-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200",
+                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     router.pathname === item.href || router.pathname.startsWith(`${item.href}/`)
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    !sidebarOpen && "md:justify-center md:px-3 md:py-3"
+                    !sidebarOpen && "justify-center px-2"
                   )}
                   title={!sidebarOpen ? item.name : undefined}
                 >
-                  <item.icon className="h-5 w-5 flex-shrink-0" />
-                  <span className={cn(
-                    "transition-opacity duration-300",
-                    !sidebarOpen && "md:hidden"
-                  )}>
-                    {item.name}
-                  </span>
+                  <item.icon className="h-5 w-5 shrink-0" />
+                  {sidebarOpen && <span>{item.name}</span>}
                 </Link>
               ))}
-            </div>
+            </nav>
           </div>
-        </nav>
+        </div>
 
         {/* User profile */}
-        <div className="border-t p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <button
-                className="flex items-center gap-3 w-full text-left p-2 rounded-md hover:bg-muted transition-colors"
-                onClick={() => router.push('/profile')}
-              >
-                <UserButton afterSignOutUrl="/" />
-                {user && sidebarOpen && (
-                  <span className="text-sm font-medium truncate">
-                    {user.fullName || user.firstName || user.emailAddresses[0]?.emailAddress}
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
+        <div className="border-t p-3">
+          <button
+            className={cn(
+              "flex w-full items-center gap-3 rounded-md p-2 hover:bg-muted transition-colors",
+              !sidebarOpen && "justify-center"
+            )}
+            onClick={() => router.push('/profile')}
+          >
+            <UserButton afterSignOutUrl="/" />
+            {user && sidebarOpen && (
+              <span className="text-sm font-medium truncate">
+                {user.fullName || user.firstName || user.emailAddresses[0]?.emailAddress}
+              </span>
+            )}
+          </button>
         </div>
       </aside>
 
-      <main className={cn(
-        "flex-1 transition-all duration-300 ease-in-out",
-        sidebarOpen ? "md:ml-64" : "md:ml-20"
-      )}>
-        <div className="container p-6">
+      {/* Main content */}
+      <main className={cn("flex-1 transition-all duration-300 ease-in-out")}>
+        <div className="container py-6 px-4">
           {children}
         </div>
         <CareerChatbotProvider />

@@ -1,9 +1,7 @@
-// layout.js (No 'use client' here)
 import '../styles/globals.css'
 import CareerChatbotWrapper from './CareerChatbotWrapper';
 
 export const metadata = {
-    title: 'JobGenie - Career Guidance',
     description: 'Get personalized career advice and guidance',
     icons: {
         icon: '/favicon.ico',

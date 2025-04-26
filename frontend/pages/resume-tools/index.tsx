@@ -9,11 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea"
 import { AlertCircle, Check, Download, FileText, Upload } from "lucide-react"
 
-interface MatchedSkill {
-  skill: string
-  isMatch: boolean
-}
-
 interface ResumeIssue {
   type: "warning" | "info"
   message: string
@@ -331,7 +326,7 @@ export default function Resume() {
 
             <div className="flex justify-end">
               <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
+                variant="default"
                 onClick={handleSubmit}
               >
                 Analyse & Generate

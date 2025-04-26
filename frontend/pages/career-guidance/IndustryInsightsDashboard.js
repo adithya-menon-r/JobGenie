@@ -235,7 +235,7 @@ const IndustryInsightsDashboard = () => {
   return (
     <div className={styles.industryInsightsDashboard}>
       <div className={styles.insightsHeader}>
-        <h2>Industry Insights Dashboard</h2>
+        <h2 style={{fontWeight: "bold"}}>Industry Insights Dashboard</h2>
         <p>Explore trending skills, salaries, and growth projections across industries</p>
       </div>
 
@@ -283,6 +283,21 @@ const IndustryInsightsDashboard = () => {
         </div>
       </div>
 
+
+      <div className={styles.realTimeInsights}>
+        <h3>Real-Time Industry Insights</h3>
+        <div className={styles.insightsBox}>
+          {isLoadingInsights ? (
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingSpinner}></div>
+              <p>Analyzing latest industry news...</p>
+            </div>
+          ) : (
+            <p>{newsInsights}</p>
+          )}
+        </div>
+      </div>
+
       <div className={styles.insightsVisualization}>
         <h3>
           {selectedInsightType === 'skills' && 'Top In-Demand Skills'}
@@ -323,20 +338,6 @@ const IndustryInsightsDashboard = () => {
               />
             </BarChart>
           </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className={styles.realTimeInsights}>
-        <h3>Real-Time Industry Insights</h3>
-        <div className={styles.insightsBox}>
-          {isLoadingInsights ? (
-            <div className={styles.loadingContainer}>
-              <div className={styles.loadingSpinner}></div>
-              <p>Analyzing latest industry news...</p>
-            </div>
-          ) : (
-            <p>{newsInsights}</p>
-          )}
         </div>
       </div>
     </div>
