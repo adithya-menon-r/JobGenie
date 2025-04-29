@@ -1,146 +1,51 @@
-# 💼 JobGenie — Your Career Copilot 🚀
+# JobGenie
 
-![image](https://github.com/user-attachments/assets/5a7e6b5a-457e-4c07-af59-d85f407a9aaf)
+JobGenie is a career assistant that helps job seekers not just find the right jobs, but actually get them. It handles everything from real time job matching based on your resume, tailoring cover letters and resumes for specific roles, generating mock interviews, and providing AI driven career guidance.
 
-JobGenie is a comprehensive **AI-powered career assistant** built to supercharge your job application journey. From crafting the perfect resume and cover letter to discovering jobs, scoring your profile with ATS, and practicing interviews — JobGenie has it all, in one place.
+![image](https://github.com/user-attachments/assets/c74e6352-e810-45af-8311-e48add7777a7)
 
----
+## Problem We Aim to Solve
+The job search process is messy an inefficient. As college students, we have been through the cycle of blindly applying to dozens of roles, tweaking the same resume, writing generic cover letters, and hoping something sticks. Most of the time, there is no feedback, no idea if you are even a good fit. JobGenie was built to fix that - by helping you find roles that actually match your profile, tailor your resume and cover letter for each job, and prep properly for interviews.
 
-## 🌟 Features
+## Installation
+For setup instructions, refer to [INSTALLATION.md](INSTALLATION.md)
 
-### 📄 Resume Optimization (LaTeX + ATS Score)
-- Generate **professional resumes using LaTeX** based on user input.
-- Upload existing resumes and receive:
-  - **ATS (Applicant Tracking System) score**
-  - **Keyword matching**
-  - Suggestions to enhance formatting, content, and structure for passing recruiter filters.
+## Key Features
+### Skill Based Job Matching
+JobGenie scrapes real-time listings from LinkedIn and finds jobs based on skills extracted from your resume, along with your preferences for role, location, and other filters. It shows personalized job recommendations with a match percentage based on how closely your skills align. You can save interesting roles or open the listing directly.
 
-### 📝 Cover Letter Generator
-- Automatically generate personalized cover letters based on:
-  - Job title
-  - Description
-  - User resume content
-- Export cover letters in PDF or LaTeX formats.
+### Resume Tools
+JobGenie analyzes your resume along with the given job description to:
+  - Extract the required skills based on the JD and calculate your skill match percentage.
+  - Score your resume for ATS compatibility, highlight what works, and suggest improvements to improve the ATS score.
+  - Customize your resume and generate a tailored cover letter using both the job description and (optionally) a self description. 
 
-### 🔍 Job Search (LinkedIn API Integration)
-- Search real-time job postings using **LinkedIn Jobs API**.
-- Filter jobs by:
-  - Job title
-  - Location
-  - Experience level
-  - Company
-- Save and bookmark jobs for later.
+### AI-powered Mock Interview
+JobGenie generates mock interview questions based on the role, JD, and experience level. You can record video responses directly on the platform and get feedback on both content and delivery - what you said and how you said it.
 
-### 🧠 AI-Powered Career Guidance Chatbot
-- Personalized chatbot trained on career advising data.
-- Helps with:
-  - Resume feedback
-  - Interview strategies
-  - Job application tips
-  - Learning resources based on career goals
+### Career Guidance
+You can ask JobGenie for learning resources, role specific roadmaps, or anything career related - from breaking into a new field to doubling down in your current one. You also get real time insights on industry specific job market trends to stay in the loop.
 
-### 🎤 AI Mock Interview Generator
-- Generates **5 interview questions and answers** tailored to:
-  - Job role
-  - Description
-  - Experience level
-- Uses **Gemini AI** for relevant, realistic prompts.
-- Saves interview sessions for review and preparation.
+## Tech Stack
 
----
+| Tech                                | Purpose                               |
+|-------------------------------------|---------------------------------------|
+| **Next.js 15** & **Tailwind CSS**  | Frontend                             |
+| **Node.js** & **Express.js**       | Backend & RESTful API framework      |
+| **FastAPI**                        | Python Backend Server                 |
+| **Clerk**                          | User authentication                   |
+| **PostgreSQL**                     | Database with Drizzle ORM            |
+| **Gemini**                         | LLM for AI integrated features       |
+| **APIfy LinkedIn Job Scraper API** | Job scraping                         |
+| **node-latex**                     | LaTeX rendering to PDF               |
 
-## 🛠️ Tech Stack
+## Contributors
+- Adithya Menon R
+- Priyansh Narang
+- Rahul K
+- Kaushal Loya
 
-| Tech           | Purpose                                 |
-|----------------|------------------------------------------|
-| **Next.js 13** | Fullstack framework                      |
-| **Tailwind CSS** | Clean, responsive UI                   |
-| **Clerk**      | User authentication                     |
-| **PostgreSQL** | Database with Drizzle ORM               |
-| **Gemini API** | AI responses (interviews, chatbot, etc.) |
-| **LaTeX.js**   | Resume rendering and formatting          |
-| **LinkedIn API** | Job listing data                       |
-| **Moment.js**  | Time formatting                          |
-| **Shadcn/UI**  | UI components                            |
-| **Lucide Icons** | Icon styling                           |
+_Made with ❤️ for jobseekers and dream chasers._
 
----
-
-## 📁 Project Structure
-
-
-## 🔐 User Flow
-
-1. **Signup/Login** using Clerk authentication.
-2. Access the dashboard to:
-   - Generate ATS-optimized resumes
-   - Create tailored cover letters
-   - Search and save jobs
-   - Talk to the career chatbot
-   - Prepare with AI-generated mock interviews
-
----
-
-## 👥 Team Members
-
-| Name             | Role                              
-|------------------|-----------------------------------
-| *Priyansh Narang* | The AI Mock Interview    
-| *Adithya Menon*     | Resume & ATS Module Lead         
-| *Rahul K*     | Job Scraping      
-| *Kaushal Loya*     | Chatbot and the career guidance        
-
----
-
-## 📦 Setup Instructions
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/jobgenie.git
-cd jobgenie
-
-# Install dependencies
-npm install
-
-# Create your environment file
-cp .env.example .env.local
-# Add the required API keys and environment variables:
-# - Clerk API keys
-# - Gemini API key
-# - LinkedIn API credentials
-# - PostgreSQL URL
-
-# Run the development server
-npm run dev
-```
-
----
-
-## 🧠 AI Services Used
-
-- **Gemini API** for:
-  - Mock interview generation
-  - Career guidance chatbot responses
-  - Resume and cover letter evaluation
-- **LaTeX.js** for dynamic PDF resume generation
-- **LinkedIn API** for live job search and filtering
-
----
-
-## 🔮 Upcoming Features
-
-- [ ] PDF resume parser with instant feedback
-- [ ] Job application tracker with status updates
-- [ ] Portfolio website generator (based on resume data)
-- [ ] Multi-language resume support
-- [ ] AI-based skill gap analysis
-
----
-
-## 📄 License
-
-MIT License. Feel free to fork, improve, and build upon JobGenie.
-
----
-
-> 🔗 _Made with ♥ the Team **HARD COMMIT** for jobseekers and dream chasers._
+## License
+[LICENSE](LICENSE)
