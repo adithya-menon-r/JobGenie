@@ -10,22 +10,6 @@ The job search process is messy an inefficient. As college students, we have bee
 ## Installation
 For setup instructions, refer to [INSTALLATION.md](INSTALLATION.md)
 
-## Key Features
-### Skill Based Job Matching
-JobGenie scrapes real-time listings from LinkedIn and finds jobs based on skills extracted from your resume, along with your preferences for role, location, and other filters. It shows personalized job recommendations with a match percentage based on how closely your skills align. You can save interesting roles or open the listing directly.
-
-### Resume Tools
-JobGenie analyzes your resume along with the given job description to:
-  - Extract the required skills based on the JD and calculate your skill match percentage.
-  - Score your resume for ATS compatibility, highlight what works, and suggest improvements to improve the ATS score.
-  - Customize your resume and generate a tailored cover letter using both the job description and (optionally) a self description. 
-
-### AI-powered Mock Interview
-JobGenie generates mock interview questions based on the role, JD, and experience level. You can record video responses directly on the platform and get feedback on both content and delivery - what you said and how you said it.
-
-### Career Guidance
-You can ask JobGenie for learning resources, role specific roadmaps, or anything career related - from breaking into a new field to doubling down in your current one. You also get real time insights on industry specific job market trends to stay in the loop.
-
 ## Tech Stack
 
 | Tech                                | Purpose                               |
@@ -38,6 +22,22 @@ You can ask JobGenie for learning resources, role specific roadmaps, or anything
 | **Gemini**                         | LLM for AI integrated features       |
 | **APIfy LinkedIn Job Scraper API** | Job scraping                         |
 | **node-latex**                     | LaTeX rendering to PDF               |
+
+## Key Features
+### Skill Based Job Matching
+JobGenie scrapes real time listings from LinkedIn and finds jobs based on skills extracted from your resume, along with your preferences for role, location, and other filters. It shows personalized job recommendations with a match percentage based on how closely your skills align. You can save interesting roles or open the listing directly.
+
+### Resume Tools
+JobGenie analyzes your resume along with the given job description to:
+  - Extract the required skills based on the JD and calculate your skill match percentage.
+  - Score your resume for ATS compatibility, highlight what works, and suggest improvements to improve the ATS score.
+  - Customize your resume and generate a tailored cover letter using both the job description and (optionally) a self description. 
+
+### AI-powered Mock Interview
+JobGenie generates mock interview questions based on the role, JD, and experience level. You can record video responses directly on the platform and get feedback on both content and delivery - what you said and how you said it.
+
+### Career Guidance
+You can ask JobGenie for learning resources, role specific roadmaps, or anything career related - from breaking into a new field to doubling down in your current one. You also get real time insights on industry specific job market trends to stay in the loop.
 
 ## Contributors
 - Adithya Menon R

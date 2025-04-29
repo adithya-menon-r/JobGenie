@@ -85,7 +85,7 @@ Go to the `backend` directory and run:
 npm run dev
 ```
 
-Go to the `grading-system` directory, after activating the virtual environment, run:
+Go to the `backend-python` directory, after activating the virtual environment, run:
 ```bash
 python run.py
 ```
